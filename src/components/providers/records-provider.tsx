@@ -64,26 +64,36 @@ export function RecordsProvider({ children }: { children: ReactNode }) {
     setError(null);
 
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+
       const response = await fetch("/api/records", {
+        method: "GET",
         cache: "no-store",
         headers: {
           Accept: "application/json",
+          "Cache-Control": "no-cache",
         },
+        signal: controller.signal,
       });
 
+      clearTimeout(timeoutId);
+
       if (!response.ok) {
-        throw new Error(await parseApiError(response));
+        const errorMsg = await parseApiError(response);
+        throw new Error(`API Error (${response.status}): ${errorMsg}`);
       }
 
       const data = (await response.json()) as RecordsPayload;
       setRecords(data.records);
       setSummary(data.summary);
     } catch (loadError) {
-      setError(
-        loadError instanceof Error
-          ? loadError.message
-          : "Nao foi possivel carregar os registros.",
-      );
+      const errorMessage = loadError instanceof Error 
+        ? loadError.message 
+        : "Nao foi possivel carregar os registros.";
+      
+      console.error("Load records error:", errorMessage);
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -98,14 +108,21 @@ export function RecordsProvider({ children }: { children: ReactNode }) {
     setError(null);
 
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+
       const response = await fetch("/api/records", {
         method: "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
+          "Cache-Control": "no-cache",
         },
         body: JSON.stringify(payload),
+        signal: controller.signal,
       });
+
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
         throw new Error(await parseApiError(response));
@@ -119,6 +136,14 @@ export function RecordsProvider({ children }: { children: ReactNode }) {
       setSummary(data.summary);
 
       return data.record;
+    } catch (createError) {
+      const errorMessage = createError instanceof Error
+        ? createError.message
+        : "Nao foi possivel criar o registro.";
+      
+      console.error("Create record error:", errorMessage);
+      setError(errorMessage);
+      throw createError;
     } finally {
       setIsCreating(false);
     }
@@ -129,12 +154,19 @@ export function RecordsProvider({ children }: { children: ReactNode }) {
     setError(null);
 
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+
       const response = await fetch(`/api/records?id=${id}`, {
         method: "DELETE",
         headers: {
           Accept: "application/json",
+          "Cache-Control": "no-cache",
         },
+        signal: controller.signal,
       });
+
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
         throw new Error(await parseApiError(response));
@@ -144,11 +176,12 @@ export function RecordsProvider({ children }: { children: ReactNode }) {
       setRecords(data.records);
       setSummary(data.summary);
     } catch (deleteError) {
-      setError(
-        deleteError instanceof Error
-          ? deleteError.message
-          : "Nao foi possivel deletar o registro.",
-      );
+      const errorMessage = deleteError instanceof Error
+        ? deleteError.message
+        : "Nao foi possivel deletar o registro.";
+      
+      console.error("Delete record error:", errorMessage);
+      setError(errorMessage);
       throw deleteError;
     } finally {
       setIsDeleting(null);

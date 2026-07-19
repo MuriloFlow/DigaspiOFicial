@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "id": "c902f6cc-7aee-46ba-b96f-43dc8e5bd332",
+      "operatorName": "Murilo Giroldo",
+      "clientName": "Claudio",
+      "amountInCents": 80000,
+      "createdAt": "2026-07-19T02:19:58.605Z"
+    },
+    {
+      "operatorName": "Daniel Alves",
+      "clientName": "Prime Labs",
+      "amountInCents": 52990,
+      "id": "353cd3b9-11a5-41d3-91c7-fdeb484a00c4",
+      "createdAt": "2026-07-18T17:06:00.000Z"
+    },
+    {
+      "operatorName": "Marina Costa",
+      "clientName": "Felipe Rocha",
+      "amountInCents": 88990,
+      "id": "86898f2e-31a3-4efd-96ef-bf4088c95c63",
+      "createdAt": "2026-07-18T16:24:00.000Z"
+    },
+    {
+      "operatorName": "Ana Beatriz",
+      "clientName": "Clara Mendes",
+      "amountInCents": 32990,
+      "id": "3649efb0-c7c1-453a-9678-485558a63423",
+      "createdAt": "2026-07-18T14:16:00.000Z"
+    },
+    {
+      "operatorName": "Rafael Lima",
+      "clientName": "Studio Norte",
+      "amountInCents": 71990,
+      "id": "15813846-518a-483c-bab4-f54e93768c70",
+      "createdAt": "2026-07-18T13:42:00.000Z"
+    },
+    {
+      "operatorName": "Marina Costa",
+      "clientName": "Helena Prado",
+      "amountInCents": 42990,
+      "id": "153f679a-2797-459f-8bb9-0f4ce2a4e9a3",
+      "createdAt": "2026-07-18T13:08:00.000Z"
+    },
+    {
+      "operatorName": "Marina Costa",
+      "clientName": "Lucas Vieira",
+      "amountInCents": 68990,
+      "id": "30650c0f-6d77-40cc-80ef-4dc884fd2f0d",
+      "createdAt": "2026-07-17T18:12:00.000Z"
+    },
+    {
+      "operatorName": "Ana Beatriz",
+      "clientName": "Orbit Capital",
+      "amountInCents": 139990,
+      "id": "e328da44-8106-4848-9cc2-c9083f5f5e9d",
+      "createdAt": "2026-07-17T14:58:00.000Z"
+    },
+    {
+      "operatorName": "Rafael Lima",
+      "clientName": "Bianca Torres",
+      "amountInCents": 45990,
+      "id": "a394508c-692a-4033-b863-f673a4029604",
+      "createdAt": "2026-07-17T12:34:00.000Z"
+    },
+    {
+      "operatorName": "Rafael Lima",
+      "clientName": "Atlas Foods",
+      "amountInCents": 92990,
+      "id": "8454a9dc-6d5f-44ba-b665-c41acae5af76",
+      "createdAt": "2026-07-16T15:48:00.000Z"
+    },
+    {
+      "operatorName": "Daniel Alves",
+      "clientName": "Nina Carvalho",
+      "amountInCents": 37990,
+      "id": "4f377019-6087-4a7d-958b-6c425d092318",
+      "createdAt": "2026-07-16T13:22:00.000Z"
+    },
+    {
+      "operatorName": "Sofia Martins",
+      "clientName": "Maya Lopes",
+      "amountInCents": 47990,
+      "id": "50aa8c15-a9ba-4a5b-86d1-2d4a0eccf5b6",
+      "createdAt": "2026-07-15T19:05:00.000Z"
+    },
+    {
+      "operatorName": "Ana Beatriz",
+      "clientName": "Henrique Sales",
+      "amountInCents": 59990,
+      "id": "1db66724-8e5f-4f39-9cc7-2054b10474e9",
+      "createdAt": "2026-07-15T12:18:00.000Z"
+    }
+  ]
+}

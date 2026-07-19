@@ -10,6 +10,17 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["@supabase/supabase-js", "lucide-react", "recharts"],
   },
+  // Rewrite para garantir que as rotas de API funcionem
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: "/api/:path*",
+          destination: "/api/:path*",
+        },
+      ],
+    };
+  },
   // Configurações de headers para evitar cache indevido
   async headers() {
     return [
@@ -18,7 +29,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Cache-Control",
-            value: "no-store, max-age=0, must-revalidate",
+            value: "no-store, max-age=0, must-revalidate, proxy-revalidate",
           },
           {
             key: "Pragma",
@@ -27,6 +38,23 @@ const nextConfig: NextConfig = {
           {
             key: "Expires",
             value: "0",
+          },
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "Access-Control-Allow-Methods",
+            value: "GET, POST, PUT, DELETE, OPTIONS",
+          },
+        ],
+      },
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
           },
         ],
       },

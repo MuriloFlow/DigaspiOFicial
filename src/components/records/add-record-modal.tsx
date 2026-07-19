@@ -50,7 +50,7 @@ export function AddRecordModal({
   const [apiError, setApiError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
   const [similarNames, setSimilarNames] = useState<SimilarResult[]>([]);
-  const debounceRef = useRef<ReturnType<typeof setTimeout>>();
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const amountInCents = useMemo(() => parseCurrencyInput(amount), [amount]);
 

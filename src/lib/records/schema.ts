@@ -22,15 +22,4 @@ export const createRecordSchema = z
   })
   .strict();
 
-export const storedRecordSchema = createRecordSchema.extend({
-  id: z.string().uuid(),
-  createdAt: z.string().datetime(),
-});
-
-export const recordsStoreSchema = z.object({
-  version: z.literal(1),
-  records: z.array(storedRecordSchema),
-});
-
 export type CreateRecordInput = z.infer<typeof createRecordSchema>;
-export type RecordsStore = z.infer<typeof recordsStoreSchema>;

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import {
   listCollaborators,
   getCollaboratorRecords,
@@ -10,17 +10,21 @@ import {
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 const noStoreHeaders = {
-  "Cache-Control": "no-store, max-age=0",
+  "Cache-Control": "no-store, max-age=0, must-revalidate",
+  "Pragma": "no-cache",
+  "Expires": "0",
 };
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
     const collaborators = await listCollaborators();
 
     return NextResponse.json({ collaborators }, { headers: noStoreHeaders });
   } catch (error) {
+    console.error("Erro ao carregar colaboradores:", error);
     return NextResponse.json(
       { message: error instanceof Error ? error.message : "Erro ao carregar colaboradores." },
       { status: 500, headers: noStoreHeaders },
@@ -28,7 +32,7 @@ export async function GET() {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   let body: Record<string, unknown>;
 
   try {
@@ -76,6 +80,7 @@ export async function POST(request: Request) {
       { status: 400, headers: noStoreHeaders },
     );
   } catch (error) {
+    console.error("Erro na operação de colaboradores:", error);
     return NextResponse.json(
       { message: error instanceof Error ? error.message : "Erro na operação." },
       { status: 500, headers: noStoreHeaders },
